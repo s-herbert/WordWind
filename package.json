@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.11",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   },

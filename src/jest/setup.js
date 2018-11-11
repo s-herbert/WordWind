@@ -11,7 +11,7 @@ module.exports = async () => {
   if(!mongod.isRunning){
     await mongod.start();
   }
-  
+
   //write a config file for mongo
   const mongoConfig = {
     mongoDBName: "mockdb",
@@ -20,5 +20,6 @@ module.exports = async () => {
 
   fs.writeFileSync(globalConfigPath, JSON.stringify(mongoConfig));
 
+  //global reference back to db for teardown
   global.__MONGOD__ = mongod;
 };

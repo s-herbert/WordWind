@@ -1,0 +1,3 @@
+beforeAll(()=>{
+  return initializeDb();
+})

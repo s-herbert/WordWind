@@ -1,3 +1,11 @@
-beforeAll(()=>{
-  return initializeDb();
+
+
+describe('db init tests', ()=>{
+
+  it('successfully connects',()=>{
+
+  })
+
+
+
 })

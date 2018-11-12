@@ -20,7 +20,7 @@ describe("setup unit tests", () => {
   });
 
   it("can spin up a connection", () => {
-    const memoryServer = new MongoMemoryServer({ autoStart: false ,debug:true});
+    const memoryServer = new MongoMemoryServer({ autoStart: false });
     expect.assertions(3);
     return setup
       .startMongo(memoryServer)

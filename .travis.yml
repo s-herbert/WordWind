@@ -12,10 +12,10 @@ jobs:
       node_js: node
       script: npm test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage
 
-# cache:
-#   directories:
-#   - "$HOME/.npm"
-#   - "$HOME/.cache"
+cache:
+  directories:
+  - "$HOME/.npm"
+  - "$HOME/.cache"
 # script: 
 #  - npm test
 #  - kill $(jobs -p) || true

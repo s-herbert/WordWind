@@ -7,12 +7,12 @@ const mongoConfig = {
   mongoDBName: DB_NAME,
   mongoUri: ""
 };
-const globalConfigPath = path.join(__dirname, "config", "globalConfig.json");
+export const globalConfigPath = path.join(__dirname, "config", "globalConfig.json");
 
 export default async function Setup() {
   this.mongod = createMongoMemoryServer();
   startMongo(this.mongod);
-  mongoConfig.mongoUri = await mongod.getConnectionString();
+  mongoConfig.mongoUri = await this.mongod.getConnectionString();
   writeMongoConfig(mongoConfig, globalConfigPath);
   //reference to db for teardown
   createGlobalDbReference(this.mongod);

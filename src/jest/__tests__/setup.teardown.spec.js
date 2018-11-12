@@ -30,7 +30,7 @@ describe("setup unit tests", () => {
         expect(memoryServer.stop()).toBeInstanceOf(Promise);
       })
       .catch(err => console.error(err));
-  });
+  },60000);
 
   it("can write to a config file", () => {
     const mongoConfig = {

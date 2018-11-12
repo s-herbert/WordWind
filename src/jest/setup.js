@@ -3,23 +3,35 @@ const fs = require("fs");
 const globalConfigPath = path.join(__dirname, "globalConfig.json");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 
-const mongod = new MongoMemoryServer({
+const setup = async ()=>{
+  this.startMongo();
+  const mongoConfig = {
+    mongoDBName: "mockdb",
+    mongoUri: await mongod.getConnectionString(),
+  };
+  this.writeMongoConfig();
+  
+  //reference to db for teardown
+  global.__MONGOD__ = this.mongod;
+}
+
+setup.mongod = new MongoMemoryServer({
   autoStart: false
 });
 
-module.exports = async () => {
-  if(!mongod.isRunning){
-    await mongod.start();
+setup.startMongo = async () =>{
+  if(!setup.mongod.isRunning){
+    await setup.mongod.start();
   }
+}
 
-  //write a config file for mongo
-  const mongoConfig = {
-    mongoDBName: "mockdb",
-    mongoUri: await mongod.getConnectionString()
-  };
-
+setup.writeMongoConfig = ()=>{
   fs.writeFileSync(globalConfigPath, JSON.stringify(mongoConfig));
+  return true;
+}
 
-  //global reference back to db for teardown
-  global.__MONGOD__ = mongod;
-};
+
+
+
+
+module.exports = setup;

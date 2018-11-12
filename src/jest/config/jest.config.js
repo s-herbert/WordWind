@@ -6,5 +6,6 @@ module.exports = {
   // globalTeardown: './teardown.js',
   // testEnvironment: './mongo-env.js',
   collectCoverage: true,
+  coverageReporters: ['lcov'];
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
 }

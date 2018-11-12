@@ -15,7 +15,6 @@ export const startMongo = async mongod => {
 };
 
 export const writeMongoConfig = (path,config) => {
-  console.log(path);  
   fs.writeFileSync(path, JSON.stringify(config, null, 2));
   return true;
 };

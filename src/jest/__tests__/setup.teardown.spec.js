@@ -11,11 +11,8 @@ afterAll(()=>{
 
 
 describe("setup unit tests", () => {
-  it("says foo", () => {
-    expect(setup.foo()).toBe("foo");
-  });
 
-  it("creates a MongoMemoryServer instance", () => {
+  it("can create a MongoMemoryServer instance", () => {
     expect(setup.createMongoMemoryServer).toBeDefined();
     const memoryServer = setup.createMongoMemoryServer();
     expect(memoryServer).toBeInstanceOf(MongoMemoryServer);
@@ -45,13 +42,19 @@ describe("setup unit tests", () => {
     expect(fs.existsSync(configPath));
   });
 
+  it("can set an object ref in jest global", ()=>{
+    const obj = {foo:'bar'}
+    const ref = setup.createGlobalDbReference(obj);
+    expect(ref.foo).toEqual(global.__MONGOD__.foo);
+  })
 
+});
 
   describe('teardown unit tests', ()=>{
 
-    it('can stop a mongo server',()=>{
-      console.log(global);
+    xit('can stop a mongo server',()=>{
+
     });
 
-  })
-});
+  });
+

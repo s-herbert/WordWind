@@ -34,6 +34,6 @@ export const writeMongoConfig = (config, path) => {
 };
 
 export const createGlobalDbReference = db => {
-  global.__MONGOD__ = this.mongod;
-  return true;
+  global.__MONGOD__ = db;
+  return global.__MONGOD__;
 }

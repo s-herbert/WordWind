@@ -4,19 +4,19 @@ node_js:
  - "8"
 install: npm ci
 
-script: echo "Running tests against $(node -v)..."
+# script: echo "Running tests against $(node -v)..."
 
-jobs:
-  include:
-    - stage: Produce Coverage
-      node_js: node
-      script: npm test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage
+# jobs:
+#   include:
+#     - stage: Produce Coverage
+#       node_js: node
+#       script: 
 
 cache:
   directories:
   - "$HOME/.npm"
   - "$HOME/.cache"
-# script: 
-#  - npm test
-#  - kill $(jobs -p) || true
+script: 
+ - npm test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage
+ - kill $(jobs -p) || true
  

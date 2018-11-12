@@ -1,5 +1,5 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
-import * as teardown from "../teardown";
+import {stopMongoServer} from '../utils/teardownHelpers';
 
 
 describe("teardown unit tests", () => {
@@ -8,7 +8,7 @@ describe("teardown unit tests", () => {
     expect.assertions(2);
     return memoryServer
       .start()
-      .then(() => teardown.stopMongoServer(memoryServer))
+      .then(() => stopMongoServer(memoryServer))
       .then(result => {
         expect(memoryServer.runningInstance).toBe(null);
         expect(result).toBe(true);

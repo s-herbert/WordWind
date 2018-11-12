@@ -13,4 +13,4 @@ export default async function Setup() {
   helpers.writeMongoConfig(helpers.globalConfigPath,mongoConfig);
   helpers.createGlobalDbReference(mongod);  
 }
-// module.exports = Setup;
+module.exports = Setup;

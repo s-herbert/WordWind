@@ -5,7 +5,7 @@ const NodeEnv = require('jest-environment-node');
 
 const globalConfigPath = path.join(__dirname, "globalConfig.json");
 
-export default class MongoEnv extends NodeEnv{
+class MongoEnv extends NodeEnv{
   constructor (config){
     super(config);
   }
@@ -27,4 +27,4 @@ export default class MongoEnv extends NodeEnv{
 }
 
 
-// module.exports = MongoEnv
+module.exports = MongoEnv

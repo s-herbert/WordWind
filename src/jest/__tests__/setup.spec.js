@@ -3,7 +3,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import * as fs from "fs";
 
 afterAll(() => {
-  // fs.unlinkSync(setup.globalConfigPath);
+  fs.unlinkSync(setup.globalConfigPath);
 });
 
 describe("setup unit tests", () => {

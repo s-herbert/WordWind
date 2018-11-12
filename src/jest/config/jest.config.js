@@ -8,8 +8,9 @@ require('@babel/polyfill')
 module.exports = {
   rootDir: '../../..',
   verbose: true,
-  // globalSetup: './src/jest/setup.js',
-  // globalTeardown: './src/jest/teardown.js',
-  // testEnvironment: './src/jest/config/mongo-env.js',
+  testPathIgnorePatterns: ["/node_modules/","/jest/__tests__"],
+  globalSetup: './src/jest/setup.js',
+  globalTeardown: './src/jest/teardown.js',
+  testEnvironment: './src/jest/config/mongo-env.js',
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
 }

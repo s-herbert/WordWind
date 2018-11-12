@@ -1,9 +1,10 @@
 export default async function teardown(){
-  stopMongoServer(global.__MONGOD__);
+  await stopMongoServer(global.__MONGOD__);
 }
 
 
 export async function stopMongoServer(server) {
-  await server.stop();
-  console.log('mongod server stopped')
+  const result =  await server.stop();
+  server.isRunning = false;
+  return result;
 };

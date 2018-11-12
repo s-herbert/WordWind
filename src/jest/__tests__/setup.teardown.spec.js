@@ -1,11 +1,11 @@
 import * as setup from "../setup";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import * as path from "path";
 import * as fs from "fs";
+import * as teardown from "../teardown";
 
-afterAll(()=>{
+afterAll(() => {
   fs.unlinkSync(setup.globalConfigPath);
-})
+});
 
 describe("setup unit tests", () => {
   it("can create a MongoMemoryServer instance", () => {
@@ -39,8 +39,7 @@ describe("setup unit tests", () => {
         expect(result).toBe(true);
       })
       .catch(err => console.error(err));
-  }, 60000);
-
+  });
 
   it("can write to a config file", () => {
     const mongoConfig = {
@@ -62,22 +61,16 @@ describe("setup unit tests", () => {
   });
 });
 
-describe("setup integration test", () => {
-  it("creates a memory server, starts it, sets a uri, writes a config file, sets a global ref", () => {
-    expect.assertions(5);
-    return setup
-      .default()
-      .then(() => {
-        expect(fs.existsSync(setup.globalConfigPath)).toBe(true);
-        expect(global.__MONGOD__).toBeInstanceOf(MongoMemoryServer);
-        expect(global.__MONGOD__.runningInstance).toBeDefined();
-        expect(global.__MONGOD__.isRunning).toBe(true);
-        expect(global.__MONGOD__.stop()).toBeInstanceOf(Promise);
-      })
-      .catch(err => console.log(err));
-  });
-});
-
 describe("teardown unit tests", () => {
-  xit("can stop a mongo server", () => {});
+  it("can stop a mongo server", () => {
+    const memoryServer = new MongoMemoryServer({ autoStart: false });
+    expect.assertions(2);
+    return memoryServer
+      .start()
+      .then(() => teardown.stopMongoServer(memoryServer))
+      .then(result => {
+        expect(memoryServer.runningInstance).toBe(null);
+        expect(result).toBe(true);
+      });
+  });
 });

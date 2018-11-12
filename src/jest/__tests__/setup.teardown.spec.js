@@ -28,6 +28,20 @@ describe("setup unit tests", () => {
       .catch(err => console.error(err));
   }, 60000);
 
+  it("it will not spin up an already spinnning connection", () => {
+    const memoryServer = new MongoMemoryServer({ autoStart: false });
+    memoryServer.isRunning = true;
+    expect.assertions(2);
+    return setup
+      .startMongo(memoryServer)
+      .then(result => {
+        expect(memoryServer.runningInstance).toBeUndefined();
+        expect(result).toBe(true);
+      })
+      .catch(err => console.error(err));
+  }, 60000);
+
+
   it("can write to a config file", () => {
     const mongoConfig = {
       mongoDBName: "mockmockdb",

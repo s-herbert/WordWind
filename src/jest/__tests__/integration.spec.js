@@ -1,10 +1,11 @@
 import * as setup from "../setup";
+import * as setupHelpers from "../utils/setupHelpers";
 import * as teardown from "../teardown";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import * as fs from 'fs';
 
 afterAll(() => {
-  fs.unlinkSync(setup.globalConfigPath);
+  fs.unlinkSync(setupHelpers.globalConfigPath);
 });
 
 describe("setup & teardown integration test", () => {
@@ -12,7 +13,7 @@ describe("setup & teardown integration test", () => {
     expect.assertions(4);
     return setup.default()
       .then(() => {
-        expect(fs.existsSync(setup.globalConfigPath)).toBe(true);
+        expect(fs.existsSync(setupHelpers.globalConfigPath)).toBe(true);
         expect(global.__MONGOD__).toBeInstanceOf(MongoMemoryServer);
         expect(global.__MONGOD__.runningInstance).toBeDefined();
         expect(global.__MONGOD__.isRunning).toBe(true);

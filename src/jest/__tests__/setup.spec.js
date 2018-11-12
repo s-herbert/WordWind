@@ -1,10 +1,9 @@
-import * as setup from "../setup";
+import * as setup from "../utils/setupHelpers";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import * as fs from "fs";
-import * as teardown from "../teardown";
 
 afterAll(() => {
-  fs.unlinkSync(setup.globalConfigPath);
+  // fs.unlinkSync(setup.globalConfigPath);
 });
 
 describe("setup unit tests", () => {
@@ -47,8 +46,8 @@ describe("setup unit tests", () => {
       mongoUri: "mongodb://fake.notreal"
     };
     const resultOfWrite = setup.writeMongoConfig(
+      setup.globalConfigPath,
       mongoConfig,
-      setup.globalConfigPath
     );
     expect(resultOfWrite).toBe(true);
     expect(fs.existsSync(setup.globalConfigPath)).toBe(true);
@@ -61,16 +60,3 @@ describe("setup unit tests", () => {
   });
 });
 
-describe("teardown unit tests", () => {
-  it("can stop a mongo server", () => {
-    const memoryServer = new MongoMemoryServer({ autoStart: false });
-    expect.assertions(2);
-    return memoryServer
-      .start()
-      .then(() => teardown.stopMongoServer(memoryServer))
-      .then(result => {
-        expect(memoryServer.runningInstance).toBe(null);
-        expect(result).toBe(true);
-      });
-  });
-});

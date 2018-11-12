@@ -1,0 +1,4 @@
+{
+  "mongoDBName": "mockmockdb",
+  "mongoUri": "mongodb://fake.notreal"
+}

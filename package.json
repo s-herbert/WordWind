@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config ./src/jest/config/jest.config.js && rm -r ./coverage",
-    "test:cov": "jest --coverage --coverageReporters=text-lcov | coveralls"
+    "test": "jest --config ./src/jest/config/jest.config.js",
+    "test:cov": "jest --config ./src/jest/config/jest.config.js --coverage --coverageReporters=text-lcov"
   },
   "repository": {
     "type": "git",

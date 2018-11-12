@@ -11,8 +11,16 @@ afterAll(async () => {
   await mongoose.disconnect();
 });
 
-describe("the message database", () => {
+describe("the persistent db", () => {
   it("has a message model", () => {
-    expect(mongoose.connection.modelNames()).toContain("messages");
+    expect(mongoose.connection.modelNames()).toContain("message");
+  });
+
+  it("has a user model", () => {
+    expect(mongoose.connection.modelNames()).toContain("users");
+  });
+
+  it("has a convo model", () => {
+    expect(mongoose.connection.modelNames()).toContain("conversations");
   });
 });

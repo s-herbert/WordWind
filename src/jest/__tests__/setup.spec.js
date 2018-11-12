@@ -25,7 +25,7 @@ describe("setup unit tests", () => {
         expect(memoryServer.stop()).toBeInstanceOf(Promise);
       })
       .catch(err => console.error(err));
-  }, 60000);
+  }, 40000);
 
   it("it will not spin up an already spinnning connection", () => {
     const memoryServer = new MongoMemoryServer({ autoStart: false });

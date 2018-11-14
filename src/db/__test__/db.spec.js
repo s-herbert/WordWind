@@ -20,7 +20,4 @@ describe("the persistent db", () => {
     expect(mongoose.connection.modelNames()).toContain("users");
   });
 
-  it("has a convo model", () => {
-    expect(mongoose.connection.modelNames()).toContain("conversations");
-  });
 });

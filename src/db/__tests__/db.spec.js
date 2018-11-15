@@ -36,7 +36,7 @@ describe("the persistent db", () => {
       await db.closeConnection();
     });
 
-    it("has a message model", () => {
+    xit("has a message model", () => {
       expect(db.getModelNames()).toContain("message");
     });
 

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --config ./src/jest/config/jest.config.js",
     "test:setuptd": "jest --config ./src/jest/config/jest.metaconfig.js",
-    "test:cov": "jest --config ./src/jest/config/jest.config.js --coverage --coverageReporters=lcov"
+    "test:cov": "jest --config ./src/jest/config/jest.config.js --coverage --coverageReporters=text-summary",
+    "test:ci": "jest --config ./src/jest/config/jest.config.js --coverage --coverageReporters=lcov"
   },
   "repository": {
     "type": "git",

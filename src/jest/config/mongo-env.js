@@ -18,6 +18,7 @@ class MongoEnv extends NodeEnvironment {
     this.global.__MONGO_DB_NAME__ = globalConfig.mongoDBName;
     console.log("Awaiting NodeEnv setup..");
     await super.setup();
+    console.log("done");
   }
 
   async teardown() {

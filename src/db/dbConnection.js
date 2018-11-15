@@ -1,19 +1,17 @@
 const mongoose = require("mongoose");
 
-export async function openConnection(URI = global.__MONGO_URI__, options = {}) {
+export async function open(URI = global.__MONGO_URI__, options = {}) {
   await mongoose.connect( URI, { ...options, useNewUrlParser: true});
   const db = mongoose.connection;
-  console.log("Mongoose connection open");
   return db;
 }
 
-export async function closeConnection() {
+export async function close() {
   await mongoose.connection.close();
-  console.log("Mongoose connection closed");
   return mongoose.connection.readyState === 0;
 }
 
-export function isConnected() {
+export function isOpen() {
   return mongoose.connection.readyState === 1;
 }
 

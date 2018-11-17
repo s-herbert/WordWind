@@ -1,5 +1,4 @@
 const { mongoose } = require("../dbMap");
-// const mongoose = require('mongoose')
 
 const messageSchema = new mongoose.Schema({
   text: String,

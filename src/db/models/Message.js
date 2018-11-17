@@ -1,11 +1,10 @@
-const mongoose = require('../db');
-const Schema = mongoose.Schema;
+const { mongoose } = require("../dbMap");
+// const mongoose = require('mongoose')
 
-
-const messageSchema = new Schema({
+const messageSchema = new mongoose.Schema({
   text: String,
   author: String,
-  timestamp: {type: Date, default: Date.now}, 
-})
+  date_added: { type: Date, default: Date.now }
+});
 
-export default mongoose.model('Message',messageSchema);
+export default mongoose.model("Message", messageSchema);

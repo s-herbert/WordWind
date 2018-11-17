@@ -2,7 +2,7 @@
 
 describe("the persistent db", () => {
   describe("general functionality", () => {
-    const dbCxn = require("../dbConnection");
+    const dbCxn = require("../dbMap");
     it("knows if its connected",()=>{
       expect(dbCxn.isOpen()).toBe(false);
     });
@@ -34,7 +34,7 @@ describe("the persistent db", () => {
   });
 
   describe("schema", () => {
-    const dbCxn = require("../dbConnection");
+    const dbCxn = require("../dbMap");
     beforeAll(async () => {
       await dbCxn.open();
     });
@@ -43,12 +43,13 @@ describe("the persistent db", () => {
       await dbCxn.close();
     });
 
-    xit("has a message model", () => {
-      expect(dbCxn.getModelNames()).toContain("message");
+    it("has a message model", () => {
+      require('../models/Message')
+      expect(dbCxn.getModelNames()).toContain("Message");
     });
 
     xit("has a user model", () => {
-      expect(dbCxn.getModelNames()).toContain("users");
+      expect(dbCxn.getModelNames()).toContain("User");
     });
   });
 });

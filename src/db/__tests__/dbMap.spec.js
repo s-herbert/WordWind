@@ -48,7 +48,8 @@ describe("the persistent db", () => {
       expect(dbCxn.getModelNames()).toContain("Message");
     });
 
-    xit("has a user model", () => {
+    it("has a user model", () => {
+      require('../models/User')
       expect(dbCxn.getModelNames()).toContain("User");
     });
   });

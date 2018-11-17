@@ -1,9 +1,9 @@
 const { dbMap } = require("../dbMap");
 
-const messageSchema = new dbMap.Schema({
+const userSchma = new dbMap.Schema({
   text: String,
   author: String,
   date_added: { type: Date, default: Date.now }
 });
 
-export default dbMap.model("Message", messageSchema);
+export default dbMap.model("User", userSchma);

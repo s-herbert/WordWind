@@ -18,3 +18,8 @@ export function isOpen() {
 export function getModelNames(){
   return dbMap.connection.modelNames();
 }
+
+export function getRequiredPaths(model){
+  if(!model) return [];
+  return dbMap.modelSchemas[model].requiredPaths();
+}

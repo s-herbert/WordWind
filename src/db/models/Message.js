@@ -2,7 +2,7 @@ const { dbMap } = require("../dbMap");
 
 const messageSchema = new dbMap.Schema({
   text: String,
-  author: String,
+  author: { type: String, required: true },
   date_added: { type: Date, default: Date.now }
 });
 

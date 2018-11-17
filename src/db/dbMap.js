@@ -1,8 +1,5 @@
 export const mongoose = require("mongoose");
 
-export const Schema = mongoose.Schema;
-export const model = mongoose.model;
-
 export async function open(URI = global.__MONGO_URI__, options = {}) {
   await mongoose.connect( URI, { ...options, useNewUrlParser: true});
   const db = mongoose.connection;

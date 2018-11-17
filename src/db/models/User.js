@@ -1,8 +1,8 @@
 const { dbMap } = require("../dbMap");
 
-const userSchema = new dbMap.Schema({
-  text: String,
-  author: String,
+export const userSchema = new dbMap.Schema({
+  name: String,
+  password: {type: String, required: true },
   pub_key: { type: String, required: true },
   date_added: { type: Date, default: Date.now }
 });

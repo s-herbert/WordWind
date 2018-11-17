@@ -68,5 +68,10 @@ describe("the persistent db", () => {
       require('../models/User')
       expect(dbMap.getRequiredPaths('User')).toContain("pub_key")
     })
+
+    it("users require a password", () =>{
+      require('../models/User')
+      expect(dbMap.getRequiredPaths('User')).toContain("password")
+    })
   });
 });

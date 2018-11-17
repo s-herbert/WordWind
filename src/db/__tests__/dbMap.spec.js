@@ -59,6 +59,11 @@ describe("the persistent db", () => {
       expect(dbMap.getRequiredPaths('Message')).toContain("author");
     });
 
+    it("messages require body", () => {
+      require('../models/Message')
+      expect(dbMap.getRequiredPaths('Message')).toContain("body");
+    });
+
     it("has a user model", () => {
       require('../models/User')
       expect(dbMap.getModelNames()).toContain("User");
